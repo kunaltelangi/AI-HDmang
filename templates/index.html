@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Help Desk AI Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🛠️ Help Desk Assistant</h1>
+
+        <form method="post">
+            <label for="question">Ask a question:</label>
+            <textarea name="question" id="question" rows="4" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+
+        {% if response %}
+        <div class="response-box">
+            <h2>Response:</h2>
+            <div class="formatted-response">
+                <ol>
+                    {% for line in response.split('\n') %}
+                        {% if line.strip() %}
+                        <li>{{ line }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ol>
+            </div>
+        </div>
+        {% endif %}
+
+
+
+        <hr>
+    </div>
+</body>
+</html>
